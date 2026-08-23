@@ -1,0 +1,33 @@
+{
+  "name": "contentful-multisite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Two independent Next.js apps reading one Contentful space.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:meridian": "npm run dev --workspace @blog/meridian",
+    "dev:fieldnotes": "npm run dev --workspace @blog/fieldnotes",
+    "dev": "npm run dev:meridian & npm run dev:fieldnotes",
+    "build": "npm run build --workspaces --if-present",
+    "build:meridian": "npm run build --workspace @blog/meridian",
+    "build:fieldnotes": "npm run build --workspace @blog/fieldnotes",
+    "start:meridian": "npm run start --workspace @blog/meridian",
+    "start:fieldnotes": "npm run start --workspace @blog/fieldnotes",
+    "lint": "npm run lint --workspaces --if-present",
+    "migrate": "node scripts/migrate.mjs",
+    "migrate:cli": "node scripts/cli.mjs migrate",
+    "seed": "node scripts/seed.mjs",
+    "prune": "node scripts/prune.mjs",
+    "space:export": "node scripts/cli.mjs export",
+    "cf": "node scripts/cli.mjs raw",
+    "preview:setup": "node scripts/preview-urls.mjs"
+  },
+  "devDependencies": {
+    "contentful-cli": "^4.0.8",
+    "contentful-management": "^12.15.0",
+    "contentful-migration": "^5.1.0"
+  }
+}

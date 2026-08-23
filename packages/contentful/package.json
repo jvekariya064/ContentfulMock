@@ -1,0 +1,21 @@
+{
+  "name": "@blog/contentful",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Contentful data access and shared UI for the site apps.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./image-loader": "./src/image-loader.ts",
+    "./components": "./src/components/index.ts"
+  },
+  "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.2.2",
+    "@contentful/rich-text-types": "^17.2.7",
+    "contentful": "^11.12.9",
+    "server-only": "^0.0.1"
+  },
+  "peerDependencies": {
+    "next": ">=16",
+    "react": ">=19"
+  }
+}

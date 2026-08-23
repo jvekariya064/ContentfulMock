@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*
+ * The shared component package lives outside this app, and Tailwind skips
+ * node_modules by default — without this, every class used only in
+ * @blog/contentful would be missing from the stylesheet.
+ */
+@source "../../../../packages/contentful/src";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  /* Fieldnotes' accent. Meridian sets a different one; every shared component
+     reads this variable, which is how one component library serves both apps. */
+  --accent: #b45309;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --accent: #fbbf24;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/*
+ * Urdu is written in Nastaliq, which most Latin-first system stacks cannot
+ * render — the fallback is Naskh, legible but wrong-looking to a native reader.
+ * No webfont is bundled here; for production, ship Noto Nastaliq Urdu.
+ *
+ * Nastaliq also needs more line height than Latin type, because the script
+ * cascades diagonally.
+ */
+:lang(ur),
+[dir="rtl"] {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic",
+    "Urdu Typesetting", serif;
+  line-height: 2.1;
+}
+
+/* Latin fragments inside Urdu text keep a Latin face. */
+[dir="rtl"] code,
+[dir="rtl"] time {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 1.5;
+}
